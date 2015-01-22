@@ -10,7 +10,7 @@ def call(method, data, post=False):
     Calls `method` from the DISQUS API with data either in POST or GET.
     Returns deserialized JSON response.
     """
-    url = "%s%s" % ('http://disqus.com/api/', method)
+    url = "%s%s" % ('//disqus.com/api/', method)
     if post:
         # POST request
         url += "/"

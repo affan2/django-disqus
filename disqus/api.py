@@ -38,7 +38,7 @@ class DisqusClient(object):
     }
 
     def __init__(self, **kwargs):
-        self.api_url = 'http://disqus.com/api/%s/?api_version=1.1'
+        self.api_url = '//disqus.com/api/%s/?api_version=1.1'
         self.__dict__.update(kwargs)
 
     def __getattr__(self, attr):
