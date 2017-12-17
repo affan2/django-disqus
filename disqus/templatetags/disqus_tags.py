@@ -56,7 +56,7 @@ def get_config(context):
 
     js = '\tvar {} = "{}";'
 
-    output = [js.format(item, context[item]) for item in conf_vars \
+    output = [js.format(item, context[item].encode('utf8')) for item in conf_vars \
               if item in context]
 
     return '\n'.join(output)
