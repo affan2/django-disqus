@@ -1,17 +1,43 @@
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-/* <![CDATA[ */
-{% block config_variables %}
-	var disqus_shortname = '{{ shortname }}';
-{{ config|safe}}
-{% endblock %}
-	/* * * DON'T EDIT BELOW THIS LINE * * */
-	(function() {
-		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-/* ]]> */
+
+$(document).ready(function () {
+    {% block config_variables %}
+        var disqus_shortname = '{{ shortname }}';
+        var disqus_public_key = '{{ public_key }}';
+        {{ config|safe}}
+    {% endblock %}
+    var threadUrl = 'link:' + $('.show-comments').attr('data-disqus-url');
+
+    $.ajax({
+        type: 'GET',
+        url: 'https://disqus.com/api/3.0/threads/set.jsonp',
+        data: { api_key: disqus_public_key, forum: disqus_shortname, thread: threadUrl },
+        cache: false,
+        dataType: 'jsonp',
+        success: function(result) {
+            if (result.response.length === 1) {
+                btnText = 'Show Comments (' + result.response[0].posts + ')';
+                $('.show-comments').html(btnText);
+            }
+        }
+    });
+
+    $('.show-comments').on('click', function() {
+        $.ajax({
+            type: "GET",
+            url: "https://" + disqus_shortname + ".disqus.com/embed.js",
+            dataType: "script",
+            cache: true
+        });
+        $(this).fadeOut();
+    });
+
+    if(/\#comment/.test(location.hash)){
+        $('.show-comments').trigger('click');
+    }
+});
+
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<button class="show-comments btn btn-info btn-block" data-disqus-url="{{ disqus_url }}"><span class="glyphicon glyphicon-comment"></span> View Comments</button>
+<div id="disqus_thread"></div>
