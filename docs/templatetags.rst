@@ -21,6 +21,7 @@ Example::
     {% load disqus_tags %}
     {% disqus_dev %}
 
+
 Result::
     
     <script type="text/javascript">
