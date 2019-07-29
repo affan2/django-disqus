@@ -37,10 +37,10 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-disqus'
-copyright = u'2015, Arthur Koziel'
+project = 'django-disqus'
+copyright = '2015, Arthur Koziel'
 
-# The version info for the project you're documenting, acts as replacement for
+# The version info for the project yo're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
@@ -172,8 +172,8 @@ htmlhelp_basename = 'django-disqusdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'django-disqus.tex', u'django-disqus Documentation',
-   u'Arthur Koziel', 'manual'),
+  ('index', 'django-disqus.tex', 'django-disqus Documentation',
+   'Arthur Koziel', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
