@@ -1,5 +1,5 @@
 import json
-
+from django.conf import settings
 from django.utils.http import urlencode
 from urllib.error import URLError
 from urllib.request import ProxyHandler, Request, urlopen, build_opener, install_opener
@@ -21,7 +21,7 @@ class DisqusClient(object):
 
     Example:
         >>> client = DisqusClient()
-        >>> json = client.get_forum_list(user_api_key=DISQUS_API_KEY)
+        >>> json = client.get_forum_list(user_api_key=settings.DISQUS_API_KEY)
     """
     METHODS = {
         'create_post': 'POST',
@@ -61,6 +61,7 @@ class DisqusClient(object):
         Return a Request object that has the GET parameters
         attached to the url or the POST data attached to the object.
         """
+        request = None
         if request_method == 'GET':
             if params:
                 request_url += '&%s' % urlencode(params)
