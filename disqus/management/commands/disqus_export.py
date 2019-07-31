@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 import json
 from optparse import make_option
@@ -7,18 +7,14 @@ import os.path
 from django.conf import settings
 from django.contrib import comments
 from django.contrib.sites.models import Site
-from django.core.management.base import NoArgsCommand, CommandError
-try:
-    from django.utils.encoding import force_text
-except ImportError:
-    # Django < 1.5
-    from django.utils.encoding import force_unicode as force_text
+from django.core.management.base import BaseCommand, CommandError
+from django.utils.encoding import force_text
 
 from disqus.api import DisqusClient
 
 
-class Command(NoArgsCommand):
-    option_list = NoArgsCommand.option_list + (
+class Command(BaseCommand):
+    option_list = BaseCommand.option_list + (
         make_option('-d', '--dry-run', action="store_true", dest="dry_run",
                     help='Does not export any comments, but merely outputs' +
                          'the comments which would have been exported.'),

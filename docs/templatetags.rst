@@ -199,3 +199,4 @@ Example::
 
 	{% load disqus_tags %}
 	{% set_disqus_title object.headline %}
+

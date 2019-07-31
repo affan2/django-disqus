@@ -17,8 +17,8 @@ except ImportError:
     import mock
 
 from disqus.api import DisqusClient, DisqusException
-from django.utils.six.moves.urllib.error import URLError
-from django.utils.six.moves.urllib.parse import parse_qs, urlparse
+from urllib.error import URLError
+from urllib.parse import parse_qs, urlparse
 from django.template import Context, Template
 from disqus.templatetags.disqus_tags import (
     set_disqus_developer,
@@ -517,7 +517,7 @@ class DisqusClientTest(TestCase):
                  'api_version': ['1.1']
                  }
 
-        for api_method, http_method in DisqusClient.METHODS.items():
+        for api_method, http_method in list(DisqusClient.METHODS.items()):
             if http_method == "GET":
 
                 url = self.client.api_url % api_method
@@ -551,7 +551,7 @@ class DisqusClientTest(TestCase):
 
         attr_ = {'user_api_key': ['spam'], 'developer_api_key': ['ham']}
 
-        for api_method, http_method in DisqusClient.METHODS.items():
+        for api_method, http_method in list(DisqusClient.METHODS.items()):
             if http_method == "POST":
 
                 url = self.client.api_url % api_method
