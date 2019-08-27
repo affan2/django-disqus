@@ -3,7 +3,7 @@ from optparse import make_option
 import os.path
 
 from django.conf import settings
-from django.contrib import comments
+import django_comments as comments
 from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.encoding import force_text

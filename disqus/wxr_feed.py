@@ -1,6 +1,8 @@
 import datetime
 from django import template
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed, add_domain
@@ -8,6 +10,7 @@ from django.utils import feedgenerator
 from django.utils.timezone import tzinfo
 from django.utils.encoding import iri_to_uri
 from django.utils.encoding import force_text
+from django_comments.models import Comment
 
 USE_SINGLE_SIGNON = getattr(settings, "DISQUS_USE_SINGLE_SIGNON", False)
 
@@ -186,8 +189,6 @@ class ContribCommentsWxrFeed(BaseWxrFeed):
     link = "/"
     
     def item_comments(self, item):
-        from django.contrib.comments.models import Comment
-        
         ctype = ContentType.objects.get_for_model(item)
         return Comment.objects.filter(content_type=ctype, object_pk=item.pk)
     

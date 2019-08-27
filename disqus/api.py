@@ -1,5 +1,7 @@
 import json
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 from django.utils.http import urlencode
 from urllib.error import URLError
 from urllib.request import ProxyHandler, Request, urlopen, build_opener, install_opener

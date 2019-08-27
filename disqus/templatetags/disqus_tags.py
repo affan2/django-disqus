@@ -6,6 +6,8 @@ import time
 
 from django import template
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 
 register = template.Library()
