@@ -23,20 +23,13 @@ $(document).ready(function () {
         }
     });
 
-    $('.show-comments').on('click', function() {
-        $.ajax({
-            type: "GET",
-            url: "https://" + disqus_shortname + ".disqus.com/embed.js",
-            dataType: "script",
-            cache: true
-        });
-        $(this).fadeOut();
+    $.ajax({
+        type: "GET",
+        url: "https://" + disqus_shortname + ".disqus.com/embed.js",
+        dataType: "script",
+        cache: true
     });
 
-    if(/\#comment/.test(location.hash)){
-        $('.show-comments').trigger('click');
-    }
 });
 
 </script>
-<button class="show-comments btn btn-info btn-block" data-disqus-url="{{ disqus_url }}"><i class="far fa-comment-lines"></i> View Comments</button>
