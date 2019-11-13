@@ -97,7 +97,7 @@ def disqus_sso(context):
 
     user = context['user']
 
-    if user.is_anonymous():
+    if user.is_anonymous:
         return ""
 
     # create a JSON packet of our data attributes
